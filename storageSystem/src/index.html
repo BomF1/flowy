@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <title>Storage System</title>
+</head>
+
+<body ng-controller="controller">
+    <div class="container">
+        <h2 class="mt-5 mb-5">
+            Storage System
+        </h2>
+        <div class="alert alert-danger" role="alert" ng-show="errorMsg">
+            {{errorMsg}}
+        </div>
+        <div class="alert alert-success" role="alert" ng-if="confirmMsg">
+            {{confirmMsg}}
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Názov produktu</th>
+                    <th scope="col">Jednotková cena</th>
+                    <th scope="col">Počet kusov na sklade</th>
+                    <th scope="col">Celková suma</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="p in product">
+                <tr>
+                    <th scope="row">{{p.id}}</th>
+                    <td class="value">{{p.name}}</td>
+                    <td class="value">{{p.price}}</td>
+                    <td class="value">{{p.storageStatus}}</td>
+                    <td class="value">{{p.totallyPrice}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="col-md-6 offset-md-3 cont">
+            <form ng-show="storage === true">
+                <div class="form-group col-md-3">
+                    <label>
+                        ID
+                    </label>
+                    <input type="text" ng-model="goodsId" class="form-control input">
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label>
+                        Počet Kusov
+                    </label>
+                    <input type="text" ng-model="numOfGoods" class="form-control input">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>
+                        Cena za kus v €
+                    </label>
+                    <input type="text" ng-model="priceOfGoods" class="form-control input">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" ng-model="workWithGoods" value="expend">
+                    <label class="form-check-label" for="inlineRadio1">
+                        Príjem tovaru
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" ng-model="workWithGoods" value="income">
+                    <label class="form-check-label" for="inlineRadio2">
+                        Výdaj tovaru
+                    </label>
+                </div>
+                <button type="button" ng-click="submited()" class="btn btn-primary">
+                    Spracovať
+                </button>
+                <h1>{{result}}</h1>
+            </form>
+ 
+           
+           /** <form>
+                <button type="button" ng-click="createNewProduct()" class="btn btn-primary">
+                    Pridať nový produkt
+                </button>
+                <div ng-show="addProduct === true">
+                    <div class="alert alert-danger mt-2" role="alert" ng-show="errorMsgProd">
+                        {{errorMsgProd}}
+                    </div>
+                    <div class="form-group col-md-4 mt-2">
+                        <label>
+                            ID
+                        </label>
+                        <input type="text" ng-model="newProdId" class="form-control input">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>
+                            Názov produktu
+                        </label>
+                        <input type="text" ng-model="prodName" class="form-control input">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>
+                            Počet Kusov vkladaných do skladu
+                        </label>
+                        <input type="text" ng-model="prodNumOfGoods" class="form-control input">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>
+                            Cena za kus v €
+                        </label>
+                        <input type="text" ng-model="prodPriceOfGoods" class="form-control input">
+                    </div>
+                    <button type="button" ng-click="saveNewProduct()" class="btn btn-primary">
+                    Pridať 
+                </button>
+                </div>
+            </form> */
+     
+        </div>
+    </div>
+    <script src="../js/controller.js"></script>
+</body>
+
+</html>
